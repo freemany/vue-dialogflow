@@ -43,9 +43,7 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'home',
-  components: {
-    // HelloWorld
-  },
+  components: {},
   methods: {
     onClick() {
       this.fetchName();
@@ -62,11 +60,11 @@ export default {
         type: 'Car'
       }});
     },
-    ...mapActions(['addVehicle','fetchName'])
+    ...mapActions('vehicle', ['addVehicle','fetchName'])
   },
   computed: {
-    ...mapState(['firstName','lastName', 'vehicles']),
-    ...mapGetters(['fullName','cars','bicycles'])
+    ...mapState('vehicle', ['firstName','lastName', 'vehicles']),
+    ...mapGetters('vehicle', ['fullName','cars','bicycles'])
   }
 }
 </script>
