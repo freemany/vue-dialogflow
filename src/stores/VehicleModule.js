@@ -62,6 +62,9 @@ const VehicleModule = {
         }
     },
     actions: {
+        setFirstName({ commit }, {firstName}) {
+            commit('SET_FIRSTNAME', {firstName});
+        },
         addVehicle({ commit }, { vehicle }) {
             commit('ADD_VEHICLE', { vehicle });
         },
@@ -77,6 +80,11 @@ const VehicleModule = {
                 })
         }
     },
+    // setters: {
+    //     firstName(state) {
+    //
+    //     }
+    // },
     getters: {
         bicycles(state){
             return state.vehicles.filter(v => v.type === 'Bicycle');
@@ -86,6 +94,9 @@ const VehicleModule = {
         },
         fullName(state) {
             return `${state.firstName} ${state.lastName}`;
+        },
+        firstName(state) {
+            return state.firstName;
         }
     }
 };

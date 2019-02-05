@@ -1,8 +1,7 @@
 <template>
   <div class="home">
-    <h3>Home</h3>
+    <h3>About</h3>
     <h2>My First Name Is {{ firstName }}</h2>
-    <input v-model="firstName"/>
     <h2>My Last Name Is {{ lastName }}</h2>
     <h2>My Full Name Is {{ fullName }}</h2>
     <button @click="onClick">Fetch Name</button>
@@ -44,7 +43,7 @@
 import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: 'home',
+  name: 'about',
   components: {},
   methods: {
     onClick() {
@@ -65,16 +64,8 @@ export default {
     ...mapActions('vehicle', ['addVehicle','fetchName'])
   },
   computed: {
-    ...mapState('vehicle', ['lastName', 'vehicles']),
-    ...mapGetters('vehicle', ['fullName','cars','bicycles']),
-    firstName: {
-        set(firstName) {
-            this.$store.dispatch('vehicle/setFirstName', {firstName});
-        },
-        get() {
-            return this.$store.getters['vehicle/firstName'];
-        }
-    },
+    ...mapState('vehicle', ['firstName','lastName', 'vehicles']),
+    ...mapGetters('vehicle', ['fullName','cars','bicycles'])
   }
 }
 </script>
