@@ -13,6 +13,7 @@
 <script>
     import { mapState, mapGetters, mapActions } from 'vuex';
     import ChatBoxFlow from '@/config/ChatBoxFlow';
+    import {setCallback} from '@/lib/ChatBotManager';
 
     export default {
         name: 'Box',
@@ -34,12 +35,14 @@
             }
         },
         methods: {
-            ...mapActions('chatbot', ['addProgress', 'setResponsePromise', 'setResponseResolve']),
+            ...mapActions('chatbot', ['addProgress', 'setResponsePromise', 'setResponseResolve', 'setResponseCallback']),
             respond(answer) {
                 const action = this.flow[this.boxStage.stage].action;
                 console.log(action);
                 if (action[0] === 'echo') {
                     this.addProgress({type: 'echo', message: 'Good choice: ' + this.picked});
+                    // this.setResponseCallback(action[2]);
+                    setCallback(action[2]);
                     const promise = new Promise((resolve) => {
                         this.setResponseResolve(resolve);
                     });

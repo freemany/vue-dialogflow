@@ -10,6 +10,7 @@ const ChatBotModule = {
         ],
         responsePromise: null,
         responseResolve: null,
+        responseCallback: null,
     },
     mutations: {
         SET_FIRSTNAME(state, {firstName}) {
@@ -27,6 +28,9 @@ const ChatBotModule = {
         SET_RESPONSE_RESOLVE(state, responseResolve) {
             state.responseResolve = responseResolve;
         },
+        SET_RESPONSE_CALLBACK(state, responseCallback) {
+            state.responseCallback = responseCallback;
+        },
         ADD_PROGRESS(state, step) {
             state.progress.push(step);
         },
@@ -40,6 +44,9 @@ const ChatBotModule = {
         },
         setResponseResolve({ commit }, responseResolve) {
             commit('SET_RESPONSE_RESOLVE', responseResolve);
+        },
+        setResponseCallback({ commit }, responseCallback) {
+            commit('SET_RESPONSE_CALLBACK', responseCallback);
         },
         // setFirstName({ commit }, {firstName}) {
         //     commit('SET_FIRSTNAME', {firstName});
@@ -85,6 +92,9 @@ const ChatBotModule = {
         },
         responseResolve(state) {
             return state.responseResolve;
+        },
+        responseCallback(state) {
+            return state.responseCallback;
         }
     }
 };
