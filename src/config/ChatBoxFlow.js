@@ -8,8 +8,8 @@ export default {
         }, {
             label: 'cruiser', value: 'cruiser',
         }],
-        action: ['echo', 'q2', function(res) {
-            setTimeout(() => this.responseResolve(res), 2000)
+        action: ['echo', 'q2', function(resolve, res) {
+            setTimeout(() => resolve(res), 2000)
         },],
         type: 'question',
         stage: 'q1',
@@ -24,8 +24,8 @@ export default {
             label: 'J10', value: 'j10',
         }],
         type: 'question',
-        action: ['echo', 'q3', function(res) {
-            setTimeout(() => this.responseResolve(res), 500)
+        action: ['echo', 'q3', function(resolve, res) {
+            setTimeout(() => resolve(res), 500)
         },],
         stage: 'q2',
     },
@@ -40,8 +40,8 @@ export default {
         }],
         type: 'question',
         stage: 'q3',
-        action: ['echo', 'q4', function(res) {
-            setTimeout(() => this.responseResolve(res), 2000)
+        action: ['echo', 'q4', function(resolve, res) {
+            setTimeout(() => resolve(res), 2000)
         },],
     },
     q4: {
@@ -55,5 +55,6 @@ export default {
         }],
         type: 'question',
         stage: 'q4',
+        action: ['echo'],
     }
 }

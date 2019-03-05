@@ -1,28 +1,20 @@
-// const ChatBotManager = (() => {
-//     let callback;
-//
-//     const setCallback = (cb) => {
-//         callback = cb;
-//     }
-//
-//     const getCallback = () => {
-//         return callback;
-//     }
-//
-//     return {
-//         setCallback,
-//         getCallback,
-//     }
-// })();
-let callback;
+
+let callback, resolve;
 
 const setCallback = (cb) => {
     callback = cb;
 };
 
 const getCallback = () => {
-    return callback;
+    return callback
 };
 
+const setResolve = (rsv) => {
+    resolve = rsv;
+};
 
-export {setCallback, getCallback};
+const getResolve= () => {
+    return resolve;
+};
+
+export {setCallback, getCallback, setResolve, getResolve};

@@ -5,14 +5,14 @@
 </template>
 <script>
     import { mapState, mapGetters, mapActions } from 'vuex';
-    import {getCallback} from '@/lib/ChatBotManager';
+    import {getCallback, getResolve} from '@/lib/ChatBotManager';
 
     export default {
         name: 'Echo',
         props: ['message'],
         mounted() {
-            // this.responseCallback.call(this, true);
-            getCallback().call(this, true);
+            // getCallback().call(this, this.responseResolve, true);
+            getCallback().call(this, getResolve(), true);
         },
         // methods: {
         //     ...mapActions('chatbot', ['addProgress', 'setResponsePromise', 'setResponseResolve', 'getResponseCallback']),
