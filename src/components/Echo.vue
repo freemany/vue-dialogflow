@@ -12,7 +12,7 @@
         props: ['message'],
         mounted() {
             // getCallback().call(this, this.responseResolve, true);
-            getCallback().call(this, getResolve(), true);
+            // getCallback().call(this, getResolve(), true);
         },
         // methods: {
         //     ...mapActions('chatbot', ['addProgress', 'setResponsePromise', 'setResponseResolve', 'getResponseCallback']),

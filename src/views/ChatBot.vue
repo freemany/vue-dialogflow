@@ -1,7 +1,7 @@
 <template>
  <div class="container">
      <template v-for="p in progress">
-         <Box v-if="p.type === 'question'" :boxStage="p" />
+         <Question v-if="p.type === 'question'" :message="p.message" :options="p.options"/>
          <Echo v-else :message="p.message"/>
      </template>
      {{$store.state.chatbot}}
@@ -9,14 +9,18 @@
 </template>
 <script>
     import { mapState, mapGetters, mapActions } from 'vuex';
-    import Box from '@/components/Box';
+    import Question from '@/components/question';
     import Echo from '@/components/Echo';
+    import {triggerDialogFlow} from "../lib/ChatBotManager";
 
     export default {
         name: 'ChatBot',
-        components: {Box, Echo},
+        components: {Question, Echo},
+        created() {
+            triggerDialogFlow(this);
+        },
         methods: {
-            ...mapActions('vehicle', ['addVehicle','fetchName']),
+            ...mapActions('chatbot', ['addProgress']),
         },
         computed: {
             // ...mapState('vehicle', ['firstName','lastName', 'vehicles']),

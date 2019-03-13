@@ -3,11 +3,7 @@ const ChatBotModule = {
     namespaced: true,
     state: {
         stage: 'q2',
-        progress: [
-            {stage: 'q1', action: 'asking', type: 'question'},
-            // {type: 'echo'},
-            // {stage: 'q2', action: 'asking', type: 'question'},
-        ],
+        progress: [],
         responsePromise: null,
         responseResolve: null,
         responseCallback: null,
