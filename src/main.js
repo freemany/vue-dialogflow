@@ -4,6 +4,7 @@ import router from './router'
 import store from './stores'
 
 Vue.config.productionTip = false;
+Vue.config.dialogFlowManual = true;
 
 new Vue({
   router,

@@ -1,5 +1,7 @@
 import {query} from '@/services/dialogflow-service';
 import {guid, getLast} from '@/lib/utils';
+import dialogFlowConfig from '@/config/dialog-flow';
+import Vue from 'vue'
 
 const initialQuery = 'get question1';
 let queryStack = [];
@@ -22,18 +24,21 @@ const getResolve= () => {
     return resolve;
 };
 
-const queryDialogFlow = (qry) => {
+const queryDialogFlow = (qry, isManual) => {
       const sessionId = guid();
 
-      const result  = {
-          intent: null,
-          message: null,
-          action: null,
-          sessionId: null,
-      };
+      if (true === isManual) {
+          const result  = dialogFlowConfig[qry];
+          if (undefined === result) {
+              return Promise.resolve(null);
+          }
+          result.options = result.action ? result.action.split(',') : [];
+          result.sessionId = sessionId;
+
+          return Promise.resolve(result);
+      }
 
       const request = query(qry, sessionId);
-
       return new Promise(resolve => {
           request.then((res) => {
               const data = res.data;
@@ -64,7 +69,10 @@ const triggerDialogFlow = (cmpt) => {
         return queryDialogFlow(query);
     }
 
-    queryDialogFlow(query).then(res => {
+    queryDialogFlow(query, Vue.config.dialogFlowManual).then(res => {
+        if (null === res) {
+            return;
+        }
         res.type = 'question';
         cmpt.addProgress(res);
     });
