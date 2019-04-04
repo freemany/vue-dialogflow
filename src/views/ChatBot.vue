@@ -1,6 +1,5 @@
 <template>
  <div class="container">
-     <input ref="bar" :value="foo" @keyup="foo=$refs.bar.value"/>{{foo}}
      <template v-for="p in progress">
          <Question v-if="p.type === 'question'" :message="p.message" :options="p.options"/>
          <Echo v-else :message="p.message"/>
