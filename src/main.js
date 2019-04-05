@@ -4,7 +4,7 @@ import router from './router'
 import store from './stores'
 
 Vue.config.productionTip = false;
-Vue.config.dialogFlowManual = true;
+Vue.config.dialogFlowManual = false; // false: no api call but from the local config file
 
 new Vue({
   router,
